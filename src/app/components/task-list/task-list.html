@@ -1,0 +1,14 @@
+<div class="container task-list-container">
+    <div class="task-list-header">
+        <h2>Tasks</h2>
+        <a routerLink="/add" class="btn btn-primary">+ Add Task</a>
+    </div>
+    <div *ngIf="(tasks$ | async) as tasks">
+        <p *ngIf="tasks.length === 0">No tasks yet. Add one.</p>
+        <ul class="task-list">
+            <li *ngFor="let t of tasks">
+                <app-task-item [task]="t" (toggle)="toggle(t.id)" (delete)="remove(t.id)"></app-task-item>
+            </li>
+        </ul>
+    </div>
+</div>
